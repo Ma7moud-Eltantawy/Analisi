@@ -32,7 +32,7 @@ void bottom_sheet(@required BuildContext context,@required double height,@requir
               builder:(context,prov,ch)=> Column(
                 children: [
                   Text(
-                    'Update Data',
+                    'Add Picture',
                     style: TextStyle(
                       color: local_blue,
                       fontSize: 16,

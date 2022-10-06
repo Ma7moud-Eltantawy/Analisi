@@ -35,29 +35,6 @@ class _Home_pageState extends State<Home_page> {
     var height=size.height;
     var width=size.width;
     return Scaffold(
-      drawer: Drawer(
-        width: width/1.5,
-        child:  Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount:10,
-                itemBuilder: (context,index){
-                  return Padding(
-                      padding: EdgeInsets.symmetric(vertical: height/250),
-                    child: ListTile(
-                      title: Text("title"),
-                      trailing: Icon(Icons.abc_outlined),
-
-                    ),
-                  );
-
-                }),
-          ],
-        ),
-      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(

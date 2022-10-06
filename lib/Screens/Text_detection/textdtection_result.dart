@@ -22,11 +22,13 @@ class Textdetection_resuts extends StatefulWidget {
   const Textdetection_resuts({Key? key}) : super(key: key);
   static const scid="textdet_results";
 
+
   @override
   State<Textdetection_resuts> createState() => _Textdetection_resuts();
 }
 
 class _Textdetection_resuts extends State<Textdetection_resuts> {
+  final ScrollController _scrollcontroller=new ScrollController();
   var imgfile;
 
 
@@ -45,13 +47,19 @@ class _Textdetection_resuts extends State<Textdetection_resuts> {
       body: FutureBuilder(
         future:  Provider.of<Textdetection_prov>(context,listen: false).processImage(InputImage.fromFilePath(Provider.of<Textdetection_prov>(context,listen: false).imgfile!.path)),
         builder:(context,snapshot)=>snapshot.connectionState==ConnectionState.waiting?Center(child: CircularProgressIndicator(),):Consumer<Textdetection_prov>(
-          builder:(context,prov,ch)=> prov.text_==null?Center(child:Text("USER_CREDIT_ERROR")):Column(
+          builder:(context,prov,ch)=> prov.text_==null?Center(child:Text("there is no text..")):Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               prov.text_!.toString()!=""
                   ? Container(
-                    child: ListView(children:[ Text(prov.text_!)]),
+                    child: Scrollbar(
+                      isAlwaysShown: true,controller: _scrollcontroller,
+
+                      child: ListView(
+                          controller:_scrollcontroller ,
+                          children:[ Text(prov.text_!)]),
+                    ),
                     margin: EdgeInsets.all(width/20),
                     padding: EdgeInsets.all(width/100),
                     height: height/1.5,
